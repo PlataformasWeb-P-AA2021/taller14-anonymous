@@ -15,12 +15,15 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'name']
 
 class EdificioSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     class Meta:
         model = Edificio
         fields = '__all__'
 
 
 class DepartamentoSerializer(serializers.HyperlinkedModelSerializer):
+    edificio_str = serializers.StringRelatedField(source="edificio", read_only=True)
+    id = serializers.IntegerField(read_only=True)
     class Meta:
         model = Departamento
         fields = '__all__' 
