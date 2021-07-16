@@ -87,7 +87,7 @@ export default {
             axios
             .get('http://127.0.0.1:8000/api/edificio/')
             .then(response => {
-                this.edificioList = response.data
+                this.edificioList = response.data['results']
             })
             .catch(error => {
                 console.log(error)
@@ -104,7 +104,7 @@ export default {
                         this.departamento
                     )
                     .then(response => {
-                        this.$router.push('/departamentos');
+                        this.$router.push('/');
                     })
             });
         }

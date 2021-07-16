@@ -1,16 +1,16 @@
 <template>
     <div class="pt-5">
-        <form @submit.prevent="create" method="post">
+        <form @submit.prevent="update" method="post">
 
             <div class="form-group">
                 <label for="nombre_prop">Nombre del propietario</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="departamento"
+                    id="nombre_prop"
                     v-model="departamento.nombre_prop"
                     v-validate="'required'"
-                    name="departamento"
+                    name="nombre_prop"
                     placeholder="Ingrese el nombre del propietario"
                     :class="{'is-invalid': errors.has('departamento.nombre_prop') && submitted}">
                 <div class="invalid-feedback">
@@ -23,10 +23,10 @@
                 <input
                     type="text"
                     class="form-control"
-                    id="departamento"
+                    id="costo_depart"
                     v-model="departamento.costo_depart"
                     v-validate="'required'"
-                    name="departamento"
+                    name="costo_depart"
                     placeholder="Ingrese el costo del departamento"
                     :class="{'is-invalid': errors.has('departamento.costo_depart') && submitted}">
                 <div class="invalid-feedback">
@@ -35,14 +35,14 @@
             </div>
 
             <div class="form-group">
-                <label for="numero_cuartos">Nro de cuartos</label>
+                <label for="numero_cuartos">Número de cuartos</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="departamento"
+                    id="numero_cuartos"
                     v-model="departamento.numero_cuartos"
                     v-validate="'required'"
-                    name="departamento"
+                    name="numero_cuartos"
                     placeholder="Ingrese el número de cuartos"
                     :class="{'is-invalid': errors.has('departamento.numero_cuartos') && submitted}">
                 <div class="invalid-feedback">
@@ -93,14 +93,14 @@ export default {
             axios
             .get('http://127.0.0.1:8000/api/edificio/')
             .then(response => {
-                this.edificioList = response.data
+                this.edificioList = response.data['results']
             })
             .catch(error => {
                 console.log(error)
             })
 
         },
-        create: function (e) {
+        update: function (e) {
             this.$validator.validate().then(result => {
                 this.submitted = true;
                 if (!result) {

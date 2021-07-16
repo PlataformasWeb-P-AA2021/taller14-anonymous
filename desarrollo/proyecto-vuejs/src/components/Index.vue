@@ -9,14 +9,14 @@
                             <h5 class="card-text">Costo del departamento: {{ departamento.costo_depart }}</h5>
                             
                             <br>
-                            <router-link :to="{name: 'edit', params: { id: departamento.id }}" class="btn btn-sm btn-primary">Editar</router-link>
+                            <router-link :to="{name: 'edit_departamento', params: { id: departamento.id }}" class="btn btn-sm btn-primary">Editar</router-link>
                             <button class="btn btn-danger btn-sm ml-1" v-on:click="deleteDepartamento(departamento)">Eliminar</button>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <p class="card-text">Nro cuartos: {{ departamento.nro_cuartos }}</p>
-                            <p class="card-text">Edificio al que pertenece: {{ departamento.edificio }}</p>
+                            <p class="card-text">Nro cuartos: {{ departamento.numero_cuartos }}</p>
+                            <p class="card-text">Edificio al que pertenece: {{ departamento.edificio_str }}</p>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@ export default {
             axios.get('http://127.0.0.1:8000/api/departamento/')
             
                 .then( response => {
-                    console.log(response.data);
-                    this.departamentos = response.data
+                    console.log(response.data['results']);
+                    this.departamentos = response.data['results'];
                 });
         }
     },
